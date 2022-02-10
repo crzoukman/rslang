@@ -1,10 +1,12 @@
 import { FC } from 'react';
 import { StyledWordName } from './WordName.styles';
 
-const WordName: FC = () => {
+const WordName: FC <{ word: string }> = (props) => {
+  const { word } = props;
+
   return (
     <StyledWordName>
-      Слово
+      {word}
     </StyledWordName>
   )
 };

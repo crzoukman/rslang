@@ -1,3 +1,4 @@
+import { IWord } from 'model/IWord';
 import { FC } from 'react';
 import WordContent from './components/WordContent';
 import WordImage from './components/WordImage';
@@ -6,14 +7,33 @@ import WordName from './components/WordName/WordName';
 import WordTranslation from './components/WordTranslation/WordTranslation';
 import { StyledWordCard } from './WordCard.styles';
 
-const WordCard: FC = () => {
+const WordCard: FC<IWord> = (props) => {
+  const {
+    image,
+    textExample,
+    textExampleTranslate,
+    textMeaning,
+    textMeaningTranslate,
+    transcription,
+    wordTranslate,
+    word,
+  } = props
+
   return (
     <StyledWordCard>
-      <WordImage/>
+      <WordImage image={image} />
       <WordContent>
-        <WordName/>
-        <WordTranslation/>
-        <WordMeaning/>
+        <WordName word={word} />
+        <WordTranslation
+          transcription={transcription}
+          translation={wordTranslate}
+        />
+        <WordMeaning
+          textExample={textExample}
+          textExampleTranslate={textExampleTranslate}
+          textMeaning={textMeaning}
+          textMeaningTranslate={textMeaningTranslate}
+        />
       </WordContent>
     </StyledWordCard>
   );

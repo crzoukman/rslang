@@ -1,11 +1,14 @@
 import { FC } from 'react';
+import { ITranslationProps } from './types';
 import { StyledWordTranslation } from './WordTranslation.styles';
 
-const WordTranslation: FC = () => {
+const WordTranslation: FC<ITranslationProps> = (props) => {
+  const { transcription, translation } = props;
+
   return (
     <StyledWordTranslation>
-      <span>Транскрипция</span>
-      <span>Перевод</span>
+      <span>{transcription}</span>
+      <span>{translation}</span>
       <button></button>
     </StyledWordTranslation>
   )

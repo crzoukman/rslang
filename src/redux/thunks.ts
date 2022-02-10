@@ -3,7 +3,7 @@ import axios from 'axios';
 import { IUser } from 'model/IUser';
 import { ISignIn } from './types';
 
-const BASE_URL = 'https://zoukman-rslang.herokuapp.com';
+export const BASE_URL = 'https://zoukman-rslang.herokuapp.com';
 
 export const createUser = createAsyncThunk(
   'thunks/createUser',
@@ -38,4 +38,19 @@ export const signIn = createAsyncThunk(
       return thunkAPI.rejectWithValue('Не удалось войти в учётную запись! Попробуйте еще раз.');
     }
   },
+);
+
+export const fetchWords = createAsyncThunk(
+  'words/fetchWords',
+  async (_, thunkAPI) => {
+    try {
+      const response = await fetch(`${BASE_URL}/words`);
+
+      const data = await response.json();
+
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue('Не удалось загрузить данные. Ошибка сервера');
+    }
+  }
 );

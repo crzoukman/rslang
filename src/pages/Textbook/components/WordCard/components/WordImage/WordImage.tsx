@@ -1,10 +1,13 @@
 import { FC } from 'react';
+import { BASE_URL } from 'redux/thunks';
 import { StyledWordImage } from './WordImage.styles';
 
-const WordImage: FC = () => {
+const WordImage: FC<{ image: string }> = (props) => {
+  const { image } = props;
+
   return (
     <StyledWordImage>
-      <img src={'https://via.placeholder.com/150'} alt="image" />
+      <img src={`${BASE_URL}/${image}`} alt={image} />
     </StyledWordImage>
   )
 };

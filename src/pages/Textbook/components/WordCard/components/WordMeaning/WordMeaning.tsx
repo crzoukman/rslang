@@ -1,15 +1,23 @@
 import { FC } from 'react';
 import { StyledWordMeaning } from './WordMeaning.styles';
+import { IWordMeaningProps } from './types';
 
-const WordMeaning: FC = () => {
+const WordMeaning: FC<IWordMeaningProps> = (props) => {
+  const {
+    textExample,
+    textExampleTranslate,
+    textMeaning,
+    textMeaningTranslate,
+  } = props;
+
   return (
     <StyledWordMeaning>
       <span>Значение</span>
-      <p>Текст значения</p>
-      <p>Перевод значения</p>
+      <p dangerouslySetInnerHTML={{ __html: textMeaning }} />
+      <p>{textMeaningTranslate}</p>
       <span>Пример</span>
-      <p>Текст примера</p>
-      <p>Перевод примера</p>
+      <p dangerouslySetInnerHTML={{ __html: textExample }} />
+      <p>{textExampleTranslate}</p>
     </StyledWordMeaning>
   );
 };
