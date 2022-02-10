@@ -1,3 +1,3 @@
-import Textbook from "./Textbook";
+import Textbook from './Textbook';
 
 export default Textbook;

@@ -1,12 +1,18 @@
-*:where(:not(iframe, canvas, img, svg, video):not(svg *, symbol *)) {
+/* *:where(:not(iframe, canvas, img, svg, video):not(svg *, symbol *)) {
   all: unset;
   display: revert;
-}
+} */
 
 *,
 *::before,
 *::after {
+  padding: 0;
+  margin: 0;
   box-sizing: border-box;
+}
+
+button {
+  all: unset;
 }
 
 a {
