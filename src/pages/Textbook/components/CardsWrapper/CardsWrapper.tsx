@@ -6,7 +6,9 @@ import { StyledCardsWrapper } from './CardsWrapper.styles';
 const CardsWrapper: FC = () => {
   const { error, status, words } = useTypedSelector((state) => state.textbook);
 
-  const wordCards = words.map((w) => <WordCard key={w.id} {...w} />);
+  const audio = new Audio();
+
+  const wordCards = words.map((w) => <WordCard key={w.id} player={audio} word={w} />);
 
   return (
     <StyledCardsWrapper>

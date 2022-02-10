@@ -10,6 +10,8 @@ span:nth-child(2) {
 }
 
 button {
+  all: unset;
+  
   &:hover {
     cursor: pointer;
   }

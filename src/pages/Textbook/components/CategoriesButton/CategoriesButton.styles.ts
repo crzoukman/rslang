@@ -9,6 +9,7 @@ export const StyledCategoriesButton = styled.div<{backgroundColor: string}>`
   }
 
   button {
+    all: unset;
     width: 100%;
     height: 100%;
     text-align: center;

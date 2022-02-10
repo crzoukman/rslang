@@ -1,4 +1,4 @@
-import { IWord } from 'model/IWord';
+import { IWordProps } from './types';
 import { FC } from 'react';
 import WordContent from './components/WordContent';
 import WordImage from './components/WordImage';
@@ -7,8 +7,11 @@ import WordName from './components/WordName/WordName';
 import WordTranslation from './components/WordTranslation/WordTranslation';
 import { StyledWordCard } from './WordCard.styles';
 
-const WordCard: FC<IWord> = (props) => {
+const WordCard: FC<IWordProps> = (props) => {
   const {
+    audio,
+    audioExample,
+    audioMeaning,
     image,
     textExample,
     textExampleTranslate,
@@ -17,7 +20,9 @@ const WordCard: FC<IWord> = (props) => {
     transcription,
     wordTranslate,
     word,
-  } = props
+  } = props.word;
+
+  const { player } = props;
 
   return (
     <StyledWordCard>
@@ -25,6 +30,10 @@ const WordCard: FC<IWord> = (props) => {
       <WordContent>
         <WordName word={word} />
         <WordTranslation
+          audio={audio}
+          audioExample={audioExample}
+          audioMeaning={audioMeaning}
+          player={player}
           transcription={transcription}
           translation={wordTranslate}
         />
