@@ -8,52 +8,49 @@ const Categories = () => {
 
   const onGroupChange = (number: number) => {
     dispatch(changeGroupNumber({ groupNumber: number }));
-  }
+  };
+
+  const groupButtonData = [
+    {
+      color: '#a2defa',
+      name: 'A1',
+    },
+    {
+      color: '#91cb77',
+      name: 'A2',
+    },
+    {
+      color: '#ffe632',
+      name: 'B1',
+    },
+    {
+      color: '#fccc1a',
+      name: 'B2',
+    },
+    {
+      color: '#fb9902',
+      name: 'C1',
+    },
+    {
+      color: '#fc600a',
+      name: 'C2',
+    },
+  ];
+
+  const buttonElements = groupButtonData.map((b, idx) => (
+    <CategoriesButton
+      key={idx + 1}
+      backgroundColor={b.color}
+      group={String(idx + 1)}
+      onGroupChange={onGroupChange}
+    >
+      {b.name}
+    </CategoriesButton>
+  ));
 
   return (
     <StyledCategories>
-      <CategoriesButton
-        backgroundColor={"#a2defa"}
-        group="1"
-        onGroupChange={onGroupChange}
-      >
-        A1
-      </CategoriesButton>
-      <CategoriesButton
-        backgroundColor={"#91cb77"}
-        group="2"
-        onGroupChange={onGroupChange}
-      >
-        A2
-      </CategoriesButton>
-      <CategoriesButton
-        backgroundColor={"#ffe632"}
-        group="3"
-        onGroupChange={onGroupChange}
-      >
-        B1
-      </CategoriesButton>
-      <CategoriesButton
-        backgroundColor={"#fccc1a"}
-        group="4"
-        onGroupChange={onGroupChange}
-      >
-        B2
-      </CategoriesButton>
-      <CategoriesButton
-        backgroundColor={"#fb9902"}
-        group="5"
-        onGroupChange={onGroupChange}
-      >
-        C1
-      </CategoriesButton>
-      <CategoriesButton
-        backgroundColor={"#fc600a"}
-        group="6"
-        onGroupChange={onGroupChange}
-      >
-        C2
-      </CategoriesButton>
+      {buttonElements}
     </StyledCategories>
   );
 };
