@@ -5,15 +5,19 @@ import ContentWrapper from "./components/ContentWrapper";
 import Title from "./components/Title";
 import CardsWrapper from "./components/CardsWrapper";
 import { Wrapper } from "./Textbook.styles";
-import { useTypedDispatch } from "redux/hooks";
+import { useTypedDispatch, useTypedSelector } from "redux/hooks";
 import { fetchWords } from "redux/thunks";
 
 const Textbook: FC = () => {
   const dispatch = useTypedDispatch();
 
+  const { groupNumber, pageNumber } = useTypedSelector(
+    (state) => state.textbook
+  );
+
   useEffect(() => {
-    dispatch(fetchWords());
-  }, []);
+    dispatch(fetchWords({ groupNumber, pageNumber }));
+  }, [groupNumber, pageNumber]);
   
   return (
     <Wrapper>

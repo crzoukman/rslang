@@ -1,10 +1,17 @@
 import { CircularProgress, Pagination } from '@mui/material';
-import { FC } from 'react';import { useTypedDispatch, useTypedSelector } from 'redux/hooks';
+import { FC } from 'react';import { changePageNumber } from 'redux/features/textbookSlice/textBookSlice';
+import { useTypedDispatch, useTypedSelector } from 'redux/hooks';
 import WordCard from '../WordCard';
 import { StyledCardsWrapper } from './CardsWrapper.styles';
 
 const CardsWrapper: FC = () => {
-  const { error, status, words } = useTypedSelector((state) => state.textbook);
+  const { error, pageNumber, status, words } = useTypedSelector((state) => state.textbook);
+
+  const dispatch = useTypedDispatch();
+
+  const onPageChange = (page: number) => {
+    dispatch(changePageNumber({ pageNumber: page }));
+  }
 
   const audio = new Audio();
 
@@ -20,7 +27,8 @@ const CardsWrapper: FC = () => {
           sx={{ marginLeft: "auto", marginRight: "auto" }}
           color="primary"
           count={30}
-          page={1}
+          page={pageNumber}
+          onChange={(_, page) => onPageChange(page)}
         />
       )}
     </StyledCardsWrapper>

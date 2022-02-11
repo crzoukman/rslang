@@ -7,12 +7,21 @@ const initialState: ITextbookState = {
   words: [],
   status: null,
   error: null,
+  groupNumber: 1,
+  pageNumber: 1,
 }
 
 const textBookSlice = createSlice({
   name: 'words',
   initialState,
   reducers: {
+    changeGroupNumber(state, action) {
+      state.groupNumber = action.payload.groupNumber;
+      state.pageNumber = 1;
+    },
+    changePageNumber(state, action) {
+      state.pageNumber = action.payload.pageNumber;
+    },
   },
   extraReducers: {
     [fetchWords.pending.type]: (state) => {
@@ -30,5 +39,7 @@ const textBookSlice = createSlice({
     },
   }
 });
+
+export const { changeGroupNumber, changePageNumber } = textBookSlice.actions;
 
 export default textBookSlice.reducer;

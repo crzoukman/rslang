@@ -3,13 +3,18 @@ import { StyledCategoriesButton } from './CategoriesButton.styles';
 import { IButtonProps } from './types';
 
 const CategoriesButton: FC<IButtonProps> = (props) => {
-  const { children, backgroundColor, group } = props;
+  const { children, backgroundColor, group, onGroupChange } = props;
 
   return (
     <StyledCategoriesButton backgroundColor={backgroundColor}>
-      <button data-group={group}>{children}</button>
+      <button
+        data-group={group}
+        onClick={() => onGroupChange(Number(group))}
+      >
+        {children}
+      </button>
     </StyledCategoriesButton>
-  )
+  );
 }
 
 export default CategoriesButton;
