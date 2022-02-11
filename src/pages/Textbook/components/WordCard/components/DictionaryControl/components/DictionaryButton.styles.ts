@@ -1,0 +1,11 @@
+import styled from 'styled-components';
+
+export const StyledDictionaryButton = styled.button`
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #cccccc;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;

@@ -6,6 +6,8 @@ import WordMeaning from './components/WordMeaning';
 import WordName from './components/WordName/WordName';
 import WordTranslation from './components/WordTranslation/WordTranslation';
 import { StyledWordCard } from './WordCard.styles';
+import DictionaryControl from './components/DictionaryControl';
+import { useTypedSelector } from 'redux/hooks';
 
 const WordCard: FC<IWordProps> = (props) => {
   const {
@@ -23,6 +25,8 @@ const WordCard: FC<IWordProps> = (props) => {
   } = props.word;
 
   const { player } = props;
+
+  const { authUserData } = useTypedSelector((state) => state.auth);
 
   return (
     <StyledWordCard>
@@ -43,6 +47,7 @@ const WordCard: FC<IWordProps> = (props) => {
           textMeaning={textMeaning}
           textMeaningTranslate={textMeaningTranslate}
         />
+        {authUserData && <DictionaryControl />}
       </WordContent>
     </StyledWordCard>
   );

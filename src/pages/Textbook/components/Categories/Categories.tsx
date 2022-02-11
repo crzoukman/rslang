@@ -1,9 +1,11 @@
 import { changeGroupNumber } from 'redux/features/textbookSlice/textBookSlice';
-import { useTypedDispatch } from 'redux/hooks';
+import { useTypedDispatch, useTypedSelector } from 'redux/hooks';
 import CategoriesButton from '../CategoriesButton';
 import { StyledCategories } from './Categories.styles';
 
 const Categories = () => {
+  const { authUserData } = useTypedSelector((state) => state.auth);
+
   const dispatch = useTypedDispatch();
 
   const onGroupChange = (number: number) => {
@@ -52,6 +54,13 @@ const Categories = () => {
   return (
     <StyledCategories>
       {buttonElements}
+      {authUserData && (
+        <CategoriesButton
+          backgroundColor={'#319795'}
+        >
+          Сложные слова
+        </CategoriesButton>
+      )}
     </StyledCategories>
   );
 };

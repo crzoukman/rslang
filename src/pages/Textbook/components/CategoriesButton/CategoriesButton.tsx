@@ -9,7 +9,7 @@ const CategoriesButton: FC<IButtonProps> = (props) => {
     <StyledCategoriesButton backgroundColor={backgroundColor}>
       <button
         data-group={group}
-        onClick={() => onGroupChange(Number(group))}
+        onClick={() => onGroupChange && onGroupChange(Number(group))}
       >
         {children}
       </button>
