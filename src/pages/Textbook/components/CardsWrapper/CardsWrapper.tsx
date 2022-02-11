@@ -5,17 +5,21 @@ import WordCard from '../WordCard';
 import { StyledCardsWrapper } from './CardsWrapper.styles';
 
 const CardsWrapper: FC = () => {
-  const { error, pageNumber, status, words } = useTypedSelector((state) => state.textbook);
+  const { error, status, words } = useTypedSelector((state) => state.textbook);
 
   const dispatch = useTypedDispatch();
 
   const onPageChange = (page: number) => {
+    localStorage.setItem('pageNumber-nsv', String(page));
     dispatch(changePageNumber({ pageNumber: page }));
   }
 
   const audio = new Audio();
 
   const wordCards = words.map((w) => <WordCard key={w.id} player={audio} word={w} />);
+
+  // When the page is loaded for the first time and Local Storage is empty
+  const currentPageNumber = Number(localStorage.getItem('pageNumber-nsv')) || 1;
 
   return (
     <StyledCardsWrapper>
@@ -27,7 +31,7 @@ const CardsWrapper: FC = () => {
           sx={{ marginLeft: "auto", marginRight: "auto" }}
           color="primary"
           count={30}
-          page={pageNumber}
+          page={currentPageNumber}
           onChange={(_, page) => onPageChange(page)}
         />
       )}

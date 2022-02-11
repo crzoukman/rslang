@@ -45,8 +45,8 @@ export const fetchWords = createAsyncThunk(
   async (pageData: ILoadingPageData, thunkAPI) => {
     try {
       const response = await fetch(
-        `${BASE_URL}/words?group=${pageData.groupNumber - 1}&page=${
-          pageData.pageNumber - 1
+        `${BASE_URL}/words?group=${pageData.savedGroupNumber - 1}&page=${
+          pageData.savedPageNumber - 1
         }`
       );
 

@@ -1,14 +1,14 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { IWord } from "model/IWord";
-import { fetchWords } from "redux/thunks";
-import { ITextbookState } from "./types";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { IWord } from 'model/IWord';
+import { fetchWords } from 'redux/thunks';
+import { ITextbookState } from './types';
 
 const initialState: ITextbookState = {
   words: [],
   status: null,
   error: null,
-  groupNumber: 1,
-  pageNumber: 1,
+  groupNumber: 0,
+  pageNumber: 0,
 }
 
 const textBookSlice = createSlice({
@@ -18,6 +18,7 @@ const textBookSlice = createSlice({
     changeGroupNumber(state, action) {
       state.groupNumber = action.payload.groupNumber;
       state.pageNumber = 1;
+      localStorage.setItem('pageNumber-nsv', '1');
     },
     changePageNumber(state, action) {
       state.pageNumber = action.payload.pageNumber;

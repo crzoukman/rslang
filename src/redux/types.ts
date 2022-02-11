@@ -4,6 +4,6 @@ export interface ISignIn {
 }
 
 export interface ILoadingPageData {
-  groupNumber: number;
-  pageNumber: number;
+  savedGroupNumber: number;
+  savedPageNumber: number;
 }

@@ -7,6 +7,7 @@ const Categories = () => {
   const dispatch = useTypedDispatch();
 
   const onGroupChange = (number: number) => {
+    localStorage.setItem('groupNumber-nsv', String(number));
     dispatch(changeGroupNumber({ groupNumber: number }));
   };
 
