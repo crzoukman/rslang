@@ -9,6 +9,7 @@ import { StyledWordCard } from './WordCard.styles';
 import DictionaryControl from './components/DictionaryControl';
 import { useTypedDispatch, useTypedSelector } from 'redux/hooks';
 import { makeWordDifficult } from 'redux/features/textbookSlice/textBookSlice';
+import { createUserWord } from 'redux/thunks';
 
 const WordCard: FC<IWordProps> = (props) => {
   const {
@@ -35,6 +36,14 @@ const WordCard: FC<IWordProps> = (props) => {
 
   const makeDifficult = () => {
     dispatch(makeWordDifficult({id}));
+
+    const authUser = JSON.parse(localStorage.getItem('authUserData-zm')!);
+
+    dispatch(createUserWord({
+      userId: authUser.userId,
+      wordId: id,
+      token: authUser.token,
+    }));
   }
 
   return (
