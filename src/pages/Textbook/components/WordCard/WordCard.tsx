@@ -7,19 +7,22 @@ import WordName from './components/WordName/WordName';
 import WordTranslation from './components/WordTranslation/WordTranslation';
 import { StyledWordCard } from './WordCard.styles';
 import DictionaryControl from './components/DictionaryControl';
-import { useTypedSelector } from 'redux/hooks';
+import { useTypedDispatch, useTypedSelector } from 'redux/hooks';
+import { makeWordDifficult } from 'redux/features/textbookSlice/textBookSlice';
 
 const WordCard: FC<IWordProps> = (props) => {
   const {
     audio,
     audioExample,
     audioMeaning,
+    id,
     image,
     textExample,
     textExampleTranslate,
     textMeaning,
     textMeaningTranslate,
     transcription,
+    userField,
     wordTranslate,
     word,
   } = props.word;
@@ -28,8 +31,14 @@ const WordCard: FC<IWordProps> = (props) => {
 
   const { authUserData } = useTypedSelector((state) => state.auth);
 
+  const dispatch = useTypedDispatch();
+
+  const makeDifficult = () => {
+    dispatch(makeWordDifficult({id}));
+  }
+
   return (
-    <StyledWordCard>
+    <StyledWordCard background={userField?.difficulty}>
       <WordImage image={image} />
       <WordContent>
         <WordName word={word} />
@@ -47,7 +56,7 @@ const WordCard: FC<IWordProps> = (props) => {
           textMeaning={textMeaning}
           textMeaningTranslate={textMeaningTranslate}
         />
-        {authUserData && <DictionaryControl />}
+        {authUserData && <DictionaryControl makeDifficult={makeDifficult} />}
       </WordContent>
     </StyledWordCard>
   );

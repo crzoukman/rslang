@@ -23,6 +23,12 @@ const textBookSlice = createSlice({
     changePageNumber(state, action) {
       state.pageNumber = action.payload.pageNumber;
     },
+    makeWordDifficult(state, action) {
+      const idx = state.words.findIndex((w) => w.id === action.payload.id);
+      state.words[idx].userField = {
+        difficulty: 'difficult',
+      };
+    },
   },
   extraReducers: {
     [fetchWords.pending.type]: (state) => {
@@ -41,6 +47,6 @@ const textBookSlice = createSlice({
   }
 });
 
-export const { changeGroupNumber, changePageNumber } = textBookSlice.actions;
+export const { makeWordDifficult, changeGroupNumber, changePageNumber } = textBookSlice.actions;
 
 export default textBookSlice.reducer;

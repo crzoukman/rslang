@@ -1,11 +1,12 @@
 import { FC } from 'react';
 import { StyledDictionaryButton } from './DictionaryButton.styles';
+import { IDictBtnProps } from './types';
 
-const DictionaryButton: FC = (props) => {
-  const { children } = props;
+const DictionaryButton: FC<IDictBtnProps> = (props) => {
+  const { makeDifficult, children } = props;
 
   return (
-    <StyledDictionaryButton>
+    <StyledDictionaryButton onClick={makeDifficult}>
       {children}
     </StyledDictionaryButton>
   )
