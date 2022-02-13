@@ -1,5 +1,6 @@
 import { changeGroupNumber } from 'redux/features/textbookSlice/textBookSlice';
 import { useTypedDispatch, useTypedSelector } from 'redux/hooks';
+import { getUserWords } from 'redux/thunks';
 import CategoriesButton from '../CategoriesButton';
 import { StyledCategories } from './Categories.styles';
 
@@ -40,6 +41,15 @@ const Categories = () => {
     },
   ];
 
+  const onLoadUserWords = () => {
+    const authUser = JSON.parse(localStorage.getItem('authUserData-zm')!);
+
+    dispatch(getUserWords({
+      userId: authUser.userId,
+      token: authUser.token,
+    }));
+  };
+
   const buttonElements = groupButtonData.map((b, idx) => (
     <CategoriesButton
       key={idx + 1}
@@ -57,6 +67,7 @@ const Categories = () => {
       {authUserData && (
         <CategoriesButton
           backgroundColor={'#319795'}
+          onLoadUserWords={onLoadUserWords}
         >
           Сложные слова
         </CategoriesButton>

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IWord } from 'model/IWord';
-import { fetchWords } from 'redux/thunks';
+import { fetchWords, getUserWords } from 'redux/thunks';
 import { ITextbookState } from './types';
 
 const initialState: ITextbookState = {
@@ -44,6 +44,11 @@ const textBookSlice = createSlice({
       state.status = 'rejected';
       state.error = action.payload;
     },
+    [getUserWords.pending.type]: (state) => {},
+    [getUserWords.fulfilled.type]: (state, action) => {
+      state.words = action.payload;
+    },
+    [getUserWords.rejected.type]: (state, action) => {},
   }
 });
 

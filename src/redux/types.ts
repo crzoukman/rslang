@@ -8,6 +8,11 @@ export interface ILoadingPageData {
   savedPageNumber: number;
 }
 
+export interface IGetUserWords {
+  userId: string;
+  token: string;
+}
+
 export interface ICreateUserWord {
   userId: string;
   wordId: string;

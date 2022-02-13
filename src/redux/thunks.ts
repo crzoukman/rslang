@@ -1,10 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { IUser } from 'model/IUser';
-import { ICreateUserWord, ILoadingPageData, ISignIn } from './types';
+import { ICreateUserWord, IGetUserWords, ILoadingPageData, ISignIn } from './types';
 
-// export const BASE_URL = 'https://zoukman-rslang.herokuapp.com';
-export const BASE_URL = 'https://react-rslang-fgriff.herokuapp.com';
+export const BASE_URL = 'https://zoukman-rslang.herokuapp.com';
 
 export const createUser = createAsyncThunk(
   'thunks/createUser',
@@ -56,6 +55,28 @@ export const fetchWords = createAsyncThunk(
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue('Не удалось загрузить данные. Ошибка сервера');
+    }
+  }
+);
+
+export const getUserWords = createAsyncThunk(
+  'words/getUserWords',
+  async (userData: IGetUserWords, thunkAPI) => {
+    try {
+      const response = await axios.get(
+        `${BASE_URL}/users/${userData.userId}/aggregatedWords?filter={"$and":[{"userWord.difficulty":"difficult"}]}`,
+        {
+          headers: {
+            Authorization: `Bearer ${userData.token}`,
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+          },
+        }
+      );
+
+      return response.data[0].paginatedResults;
+    } catch (error) {
+      return thunkAPI.rejectWithValue('Не удалось загрузить слова');
     }
   }
 );

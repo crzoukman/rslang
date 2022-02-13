@@ -16,7 +16,7 @@ const CardsWrapper: FC = () => {
 
   const audio = new Audio();
 
-  const wordCards = words.map((w) => <WordCard key={w.id} player={audio} word={w} />);
+  const wordCards = words.map((w) => <WordCard key={w.id || w._id} player={audio} word={w} />);
 
   // When the page is loaded for the first time and Local Storage is empty
   const currentPageNumber = Number(localStorage.getItem('pageNumber-nsv')) || 1;
