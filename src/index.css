@@ -1,0 +1,81 @@
+*:where(:not(iframe, canvas, img, svg, video):not(svg *, symbol *)) {
+  all: unset;
+  display: revert;
+}
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+a {
+  cursor: revert;
+}
+
+ol,
+ul,
+menu {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+textarea {
+  white-space: revert;
+}
+
+:where([hidden]) {
+  display: none;
+}
+
+:where([contenteditable]) {
+  -moz-user-modify: read-write;
+  -webkit-user-modify: read-write;
+  overflow-wrap: break-word;
+  -webkit-line-break: after-white-space;
+}
+
+:where([draggable="true"]) {
+  -webkit-user-drag: element;
+}
+
+
+@font-face {
+	font-family: 'Roboto-Bold';
+	src: url('./assets/fonts/Roboto-Bold.ttf') format('truetype');
+  font-weight: 700;
+}
+
+@font-face {
+	font-family: 'Roboto-Regular';
+	src: url('./assets/fonts/Roboto-Regular.ttf') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+	font-family: 'Roboto-Light';
+	src: url('./assets/fonts/Roboto-Light.ttf') format('truetype');
+  font-weight: 300;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track-piece {
+  background-color: #ccc;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #1976d2;
+  border-radius: 3px;
+}
